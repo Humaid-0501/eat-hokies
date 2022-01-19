@@ -1,0 +1,331 @@
+.content{
+        background-color: #cccccc;
+        overflow: hidden;
+    }
+
+.your-orders{
+        margin-left: 60px;
+        font-size: 22px;
+    }
+
+.from-dining{
+        padding: 20px 0 20px 30px;
+        background-color: #999;
+    }
+
+.order-summary{
+        text-align: center;
+    }
+.meal1-summary , .meal2-summary{
+        display: block;
+        border-bottom: 2px solid #9999;
+        margin-top: 15px;
+    }
+
+.meal1-summary div , .meal2-summary div{
+        padding: 10px 10%;
+    }
+
+.image{
+    width: 100%;
+}
+
+#primary-nav ul li a:hover{
+        background-color: grey;
+    }
+
+.item-quantity{
+        display: inline-block;
+        bottom: 10px;
+    margin: 0 15px;
+    position: relative;
+    }
+
+.bill-details{
+        padding: 10px 10%;
+    }
+.item{
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .item-total p{
+        display: inline-block;
+    }
+
+    .taxes{
+        border-bottom: 2px solid black;
+    }
+
+    .taxes p, img{
+        display: inline-block;
+    }
+
+    .tax-charges{
+        float: right;
+        margin-right: 10px;
+    }
+    .to-pay{
+        display: inline-block;
+    }
+    .to-pay-price{
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .apply-coupon{
+        text-align: center;
+    }
+
+    .pay-coupon input{
+        text-align: center;
+        padding: 15px;
+        width: 210px;
+        border-style: dashed;
+        border-radius: 10px;
+        font-family: Acherus Grotesque, Montserrat, Helvetica, Arial, SansSerif;
+        font-size: 18px;
+    }
+
+    .pay-coupon img{
+        position: absolute;
+        margin: 14px 0 0 15px;
+    }
+
+    .place-order{
+        display: block;
+        padding: 15px;
+        font-family: Acherus Grotesque, Montserrat, Helvetica, Arial, SansSerif;
+        font-size: 15px;
+        border: none;
+        background-color: orange;
+        margin: 22px 0 15px 0;
+        width: 100%;
+    }
+    .coupon-container{
+        text-align: center;
+    }
+
+@media all and (min-width: 1455px) {
+    .from-dining h2{
+        font-size: 30px;
+    }
+
+    .your-orders h1{
+        margin: 30px 0;
+        width: 258px;
+        border-bottom: 1px solid black;
+    }
+
+    .order-details{
+        margin: 0 100px 30px;
+        background-color: white;
+    }
+
+    .from-dining h2{
+        margin: 0;
+    }
+
+    .order-summary{
+        text-align: inherit;
+        display: inline-block;
+        width: 51.256%;
+        padding: 0 0 20px 50px;
+        margin-top: 5px;
+    }
+
+    .meal1-summary , .meal2-summary{
+        display: block;
+        border-bottom: 2px solid #9999;
+        margin: 15px 0;
+        height: 217px;
+    }
+
+    .image{
+        width: inherit;
+        height: 200px;
+    }
+
+    .meal2-summary div .image{
+        width: 240px;
+    }
+
+    .meal1-summary div , .meal2-summary div{
+        padding: 0 0;
+    }
+
+    .meal1-summary h3, .meal2-summary h3{
+        display: inline-block;
+    }
+
+    .meal1-summary p, .meal2-summary p{
+        display: inline-block;
+    }
+
+    .summary-description{
+        display: inline-block;
+        position: absolute;
+        height: 160px;
+        width: 29%;
+        margin: 20px;
+        font-size: 22px;
+    }
+
+    .summary-description h3{
+        margin: 0;
+        float: left;
+    }
+
+    .item-quantity{
+        position: relative;
+        top: 88px;
+        right: 276px;
+        margin: 0;
+    }
+
+    .minus-icon{
+        position: relative;
+        top: 100px;
+        right: 302px;
+    }
+
+    .plus-icon{
+        position: relative;
+        top: 100px;
+        right: 243px;
+    }
+
+    .price{
+        float: right;
+        margin: 0 10px 0 0;
+        position: relative;
+        top: 46px;
+    }
+
+    .meal2-summary .minus-icon{
+        position: relative;
+        top: 100px;
+        right: 269px;
+    }
+
+    .meal2-summary .item-quantity{
+        position: relative;
+        top: 88px;
+        right: 243px;
+        margin: 0;
+    }
+
+    .meal2-summary .plus-icon{
+        position: relative;
+        top: 100px;
+        right: 210px;
+    }
+
+    .meal2-summary .price{
+        float: right;
+        margin: 0 10px 0 0;
+        position: relative;
+        top: 46px;
+    }
+
+
+    .choose-time h2{
+        margin: 15px 0;
+    }
+
+    .choose-time input{
+        padding: 8px;
+        font-size: 15px;
+    }
+
+    .bill-details{
+        display: inline-block;
+        position: absolute;
+        width: 412px;
+        height: 556px;
+        margin: 20px 0 0 30px;
+        padding: 0 0 0 30px;
+        border-left: 1px solid black;
+    }
+
+    .item{
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .item-total{
+        font-size: 22px;
+        border-bottom: 2px solid #9999;
+    }
+
+    .item-total p{
+        display: inline-block;
+    }
+
+    .taxes{
+        font-size: 22px;
+        border-bottom: 2px solid black;
+    }
+
+    .taxes p, img{
+        display: inline-block;
+    }
+
+    .tax-charges{
+        float: right;
+        margin-right: 10px;
+    }
+
+    .to-pay{
+        display: inline-block;
+    }
+
+    .pay-coupon p{
+        font-size: 22px;
+    }
+
+    .to-pay-price{
+        display: inline-block;
+        float: right;
+        margin-right: 10px;
+    }
+
+
+    .coupon-container{
+        margin-left: 10px;
+    }
+
+    .pay-coupon input{
+        text-align: center;
+        padding: 15px;
+        width: 210px;
+        border-style: dashed;
+        border-radius: 10px;
+        font-family: Acherus Grotesque, Montserrat, Helvetica, Arial, SansSerif;
+        font-size: 18px;
+    }
+
+    .pay-coupon img{
+        position: absolute;
+        margin: 14px 0 0 15px;
+    }
+
+    .place-order{
+        display: block;
+        padding: 15px;
+        font-family: Acherus Grotesque, Montserrat, Helvetica, Arial, SansSerif;
+        font-size: 15px;
+        border: none;
+        background-color: orange;
+        margin: 22px 0 0 90px;
+        width: 244px;
+    }
+
+    .place-order:hover{
+        cursor: pointer;
+        background-color: #fa8f03;
+    }
+}

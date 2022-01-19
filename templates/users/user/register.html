@@ -1,0 +1,54 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/register.css" %}{% endblock %}
+
+{% block page-title %}Log In{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div class="nav-buttons">
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Help</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block login-page %}
+    <div id="content">
+        <div id="description">
+            <h1>Truly, everything tastes amazing.</h1>
+            <p>Forget all those preconceived notions of nasty cafeteria food. At Virginia Tech, we maintain a perfect balance between good and healthy food.
+                So join us and stay healthy!</p>
+        </div>
+
+
+        <form id="register-user" action="{% url 'users:register' %}" method="POST">
+            {% csrf_token %}
+            <h1>Sign Up</h1>
+            <label class="register-first-name">First name</label>
+            <input type="text" class="register-first-name" name="first-name" placeholder="Enter your first name" required>
+
+            <label class="register-last-name">Last name</label>
+            <input type="text" class="register-last-name" name="last-name" placeholder="Enter your last name" required>
+
+            <label class="register-email">Email</label>
+            <input type="email" class="register-email" name="email" placeholder="Enter your email" required>
+
+            <label class="register-username">Username</label>
+            <input type="text" class="register-username" name="username" placeholder="Enter Username" required>
+
+            <label class="register-password">Password</label>
+            <input type="password" class="register-password" name="password" placeholder="Enter Password" required>
+
+
+            <input type="submit" id="submit" name="submit" value="Sign Up">
+        </form>
+
+    </div>
+{% endblock %}

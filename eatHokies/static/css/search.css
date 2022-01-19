@@ -1,0 +1,54 @@
+.search-container{
+    background-color: #ccc;
+    padding: 20px 35px 30px;
+}
+
+.search-result{
+    /*padding: 20px 50px 30px;*/
+}
+
+.searched-item{
+    width: 100%;
+    display: block;
+    /*grid-template-columns: 1fr 1fr;*/
+}
+
+.searched-item div{
+    width: 300px;
+}
+
+.searched-item a{
+    text-decoration: none;
+    color: black;
+}
+
+.searched-item img{
+    width: 100%;
+    height: 250px;
+}
+
+.searched-item p{
+    margin-bottom: 10px;
+}
+
+.searched-item .price{
+    margin-top: 10px;
+}
+
+@media all and (min-width: 1024px){
+    .search-container{
+        padding: 20px 50px 30px;
+    }
+
+    .searched-item{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media all and (min-width: 1400px){
+    .searched-item{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}

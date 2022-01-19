@@ -1,0 +1,92 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/list.css" %}{% endblock %}
+
+{% block page-title %}Item Lists{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30"><p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{% url "users:login_page" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+
+{% block dining-name %}
+    <div class="dining-name">
+        <h1>{{ resID.name }}</h1>
+        <div class="sort">
+{#            <label>Sort By</label>#}
+{#            <button class="sort-category" name="category" data-restaurant-id="{{ resID.id }}" data-category-value="name" data-ajax-url="{% url "eatHokies:dining_sort" resID.id %}" value="name">Sort By Name</button>#}
+            <button type="submit" class="sort-category" name="category" onclick=" window.location.href = '{% url "eatHokies:dining_sort" resID.id %}';" value="name">Sort By Name</button>
+{#            <select class="sort-category" name="category">#}
+{#                <option selected value="name" data-category-value="name" data-ajax-url="{% url "eatHokies:dining_sort" %}">Name</option>#}
+{#                <option value="price" data-category-value="price" data-ajax-url="{% url "eatHokies:dining_sort" %}">Price</option>#}
+{#                <option value="time">Time</option>#}
+{#            </select>#}
+        </div>
+        {% if request.session.role == 'admin' %}
+        <div class="add-item">
+            <a href="{% url "eatHokies:dining_add_item" %}">Add an Item</a>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block side-tabs %}
+    <ul class="side-tabs">
+            <li><a href="#" class="selected">Top Picks</a></li>
+            <li><a href="#">Offers</a></li>
+            <li><a href="#">What's New</a></li>
+            <li><a href="#">Vegetarian</a></li>
+            <li><a href="#">See All</a></li>
+    </ul>
+{% endblock %}
+
+{% block menu %}
+    <div class="menu">
+            <div class="menu-items">
+
+                <h2>Top Picks</h2>
+                <div class="item-info">
+                    {% for item in items %}
+                        <div>
+                            <a href="{% url "eatHokies:dining_details" item.id %}">
+                                <img src="{% static item.url %}" alt="Food Image" style="width: 100%;"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                                <div class="item-description">
+                                    <h4>{{ item.name }}</h4>
+                                    <p>{{ item.time }} mins</p>
+                                    <p class="price">$ {{ item.price }}</p>
+                                </div>
+                            </a>
+                            {% if request.session.role == 'admin' %}
+{#                                <a href="{% url "eatHokies:edit_item" item.id %}" class="edit-button"><img src="{% static "icons/edit.png" %}"></a>#}
+                                <a href="{% url "eatHokies:delete_item" item.id %}" class="delete-button"><img src="{% static "icons/bin.png" %}"></a>
+                            {% endif %}
+
+                        </div>
+
+                    {% endfor %}
+                </div>
+
+            </div>
+    </div>
+{% endblock %}

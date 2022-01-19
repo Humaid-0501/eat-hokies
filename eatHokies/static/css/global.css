@@ -1,0 +1,202 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: Acherus Grotesque, Montserrat, Helvetica, Arial, SansSerif;
+}
+
+#title-logo{
+    text-align: center;
+    width: 100%;
+    }
+
+div#title-logo .vt-logo{
+        margin: 20px 50px;
+    }
+
+div#title-logo a{
+    color: black;
+    text-decoration: none;
+}
+
+div#title-logo h1{
+        margin: 0 0 10px 0;
+        display: block;
+    }
+
+#primary-nav{
+    text-align: center;
+    }
+
+#primary-nav input[type=text]{
+        border-radius: 25px;
+        width: 50%;
+        padding: 7px;
+    }
+
+.search-icon{
+        position: relative;
+    right: 25px;
+    top: 2px;
+    }
+
+.nav-buttons{
+    display: inline-block;
+    width: 360px;
+}
+
+#primary-nav ul{
+    height: 60px;
+        list-style-type: none;
+    padding-left: 0;
+    }
+
+#primary-nav ul li{
+        float: left;
+        margin: 0 0 0 12.8%;
+    }
+
+#primary-nav ul li a{
+        display: block;
+        text-decoration: none;
+        color: black;
+        padding: 10px 10px;
+    }
+
+#primary-nav ul li a:hover{
+        background-color: grey;
+    }
+
+ul.messages{
+    font-weight: bold;
+    padding: 1em;
+    margin: 0;
+    list-style: none;
+}
+
+ul.messages li.success{
+    background-color: lightgreen;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+#footer,hr{
+        clear: left;
+        text-align: center;
+        margin: 0;
+}
+
+#footer #footer-subscribe input[type=email]{
+    padding: 5px 0 5px 5px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#footer #footer-subscribe input[type=submit]{
+    padding: 5px;
+    border-style: groove;
+}
+
+.social-links img{
+    /*padding: 30px 30px 0 0;*/
+    /*padding: 30px 10px 10px 10px;*/
+    padding: 30px 10px 10px 10px;
+}
+
+@media all and (min-width: 1441px){
+    #header{
+        overflow: hidden;
+    }
+
+    #title-logo{
+        float: left;
+        width: 36%;
+    }
+
+    div#title-logo .vt-logo{
+        float: left;
+        /*margin: 20px 50px;*/
+        margin: 25px 0 25px 50px;
+    }
+
+    div#title-logo h1{
+        margin: 50px 0 0 0;
+        display: inline-block;
+    }
+
+
+    #primary-nav input[type=text]{
+        float: left;
+        border-radius: 25px;
+        width: 500px;
+        position: relative;
+        top: 60px;
+        padding: 7px;
+    }
+
+    .search-icon{
+        float: left;
+        position: relative;
+        top: 68px;
+        /*right: 25px;*/
+        /*right: 358px;*/
+    }
+
+    .search-button{
+        float: left;
+        position: relative;
+        top: 62px;
+        left: 8px;
+        padding: 5px;
+    }
+
+    #primary-nav{
+        display: inline-block;
+        /*margin-left: 2.357%;*/
+        width: 61.6%;
+    }
+
+    .nav-buttons{
+        position: relative;
+        display: inline-block;
+        top: 40px;
+        width: 300px;
+    }
+
+    #primary-nav ul{
+        float: left;
+        margin: 0;
+        text-align: center;
+        list-style-type: none;
+        /*margin-left: 60px;*/
+    }
+
+    #primary-nav ul li{
+        float: left;
+        margin: 0 10px 0 0;
+    }
+
+    #primary-nav ul li a{
+        display: block;
+        text-decoration: none;
+        color: black;
+        padding: 10px 20px;
+        /*margin-top: 50px;*/
+    }
+
+    #primary-nav ul li a:hover{
+        background-color: grey;
+    }
+
+    .cart-icon p{
+        margin: 0;
+        left: 40px;
+    }
+
+    .profile-icon{
+        position: relative;
+    }
+
+}

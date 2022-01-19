@@ -1,0 +1,126 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/profile.css" %}{% endblock %}
+
+{% block page-title %}Profile for {{ user.username }}{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30">
+                        <p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li>
+                    <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url "users:login" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+{% block details-block %}
+    <div class="item-image">
+{#            <div class="image">#}
+{#                <img src={% static details.url %} alt="item-pictures"> <!--Source of image: https://www.google.com/imghp?hl=en-->#}
+{#            </div>#}
+
+            <div class="item-description">
+                <div class="top-content">
+
+        <h1 id="profile-info">Profile Information </h1>
+
+        {% if request.session.username == user.username or request.session.role == 'admin' %}
+            <a href="{% url "users:profile_edit" user.username %}" class="edit-button"><img src="{% static "icons/edit.png" %}"></a>
+        {% endif %}
+
+        <div class="profile-and-actions">
+            <div class="profile-content">
+                <!--This class is to display the multiple images of the item-->
+                <div class="picture-container">
+                    <img src= {% static user.details.profile_pic %} alt="Profile_picture" class="picture-container-element" />
+                </div>
+
+                <!--This class is to display the item description-->
+                <div class="user-description">
+
+                    <!--Profile, details, and seller information-->
+                    <div class="user-detail">
+                        <p class="field"> First Name: </p>
+                        <p class="field-value">{{ user.first_name }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Last Name: </p>
+                        <p class="field-value">{{ user.last_name }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Username: </p>
+                        <p class="field-value">{{ user.username }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Role: </p>
+                        <p class="field-value">{{ user.details.role }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Gender: </p>
+                        <p class="field-value">{{ user.details.gender }}</p>
+                    </div>
+                     <div class="user-detail">
+                        <p class="field"> Email Address: </p>
+                        <p class="field-value">{{ user.email }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% if request.session.username %}
+        {% block sidebar %}
+                {% include "actions/action/feed.html" %}
+        {% endblock %}
+    {% endif %}
+    </div>
+{#                <h1>Profile Information</h1>#}
+{#                <dl>#}
+{#                    <dt>Username:</dt>#}
+{#                    <dd>{{ user.username }}</dd>#}
+{#                    <dt>First name:</dt>#}
+{#                    <dd>{{ user.first_name }}</dd>#}
+{#                    <dt>Last name:</dt>#}
+{#                    <dd>{{ user.last_name }}</dd>#}
+{#                    <dt>Email address:</dt>#}
+{#                    <dd>{{ user.email }}</dd>#}
+{#                    <dt>Role:</dt>#}
+{#                    <dd>{{ user.details.role }}</dd>#}
+{#                    <dt>Gender:</dt>#}
+{#                    <dd>{{ user.details.gender }}</dd>#}
+{#                </dl>#}
+{#                {% if request.session.username == user.username or request.session.role == 'admin' %}#}
+{#                    <button onclick="window.location.href = '{% url "users:profile_edit" user.username %}'">Edit info</button>#}
+{#                {% endif %}#}
+{##}
+{#            {% if request.session.role == 'admin' or request.session.username %}#}
+{#                <div class="dashboard">#}
+{#                    <div class="dashboard-content">#}
+{#                    <div class="order-history">#}
+{#                        {% include "actions/action/feed.html" %}#}
+{#                    </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% endif %}#}
+            </div>
+
+    </div>
+
+{% endblock %}

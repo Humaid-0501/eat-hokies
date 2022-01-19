@@ -1,0 +1,229 @@
+.content{
+        background-color: #cccccc;
+    }
+
+.dining-name h1{
+        display: inline-block;
+        margin-left: 20px;
+        border-bottom: 1px solid black;
+    }
+
+.sort{
+    display: inline-block;
+    float: right;
+    margin: 32px 22px;
+}
+
+.add-item{
+    margin: 10px 0;
+}
+
+.add-item a{
+    margin-left: 20px;
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.add-item a:hover{
+    background-color: orange;
+}
+
+.side-tabs{
+        display: inline-block;
+        width: 100%;
+        padding-left: 0;
+        list-style-type: none;
+        background-color: #cccccc;
+    }
+.side-tabs li a{
+        display: block;
+        text-decoration: none;
+        padding: 10px 15px;
+        color: black;
+        background-color: #9999;
+        text-align: center;
+    }
+
+.side-tabs li a:hover{
+        background-color: orange;
+    }
+
+.side-tabs li a.selected{
+        background-color: #fff;
+        font-weight: bold;
+    }
+
+.menu-items h2{
+        margin-left: 20px;
+    }
+
+/*ul.messages{*/
+/*    font-weight: bold;*/
+/*    padding: 1em;*/
+/*    margin: 0;*/
+/*    list-style: none;*/
+/*}*/
+
+/*ul.messages li.success{*/
+/*    background-color: lightgreen;*/
+/*    padding: 1em;*/
+/*    margin: 0.25em;*/
+/*}*/
+ul.messages li.warning{
+    background-color: lightcoral;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+ul.messages li.error{
+    background-color: orange;
+    padding: 1em;
+    margin: 0.25em;
+}
+
+.item-info div{
+    padding: 10px 10%;
+    height: fit-content;
+}
+
+
+.item-info div a{
+        text-decoration: none;
+        color: black;
+    }
+
+.item-description h4{
+        margin-top: 10px;
+        margin-bottom: 5px;
+    }
+
+.item-description p{
+        float: left;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .item-description p.price{
+        float: right;
+    }
+
+    .item-info div .item-description{
+        padding: 0 2% 25px;
+    }
+
+    .item-description{
+        padding: 0 10px 35px 10px;
+    }
+
+    .edit-button{
+        float: left;
+        padding-left: 2%;
+    }
+
+    .delete-button{
+        float: left;
+        padding-left: 2%;
+    }
+
+    .menu .menu-items .item-info .edit-button img{
+        height: 15px;
+    }
+
+    .menu .menu-items .item-info .delete-button img{
+        height: 15px;
+    }
+
+@media all and (min-width: 1300px){
+    .content{
+        background-color: #cccccc;
+        overflow: hidden;
+        padding-bottom: 21px;
+    }
+
+    .dining-name h1{
+        display: inline-block;
+        margin-left: 50px;
+        border-bottom: 1px solid black;
+    }
+
+    .add-item a{
+        margin-left: 50px;
+    }
+
+    .sort{
+        margin: 32px 40px;
+    }
+
+    .sort button{
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .side-tabs{
+        float: left;
+        width: 11.16%;
+        padding-left: 0;
+        list-style-type: none;
+        background-color: #cccccc;
+    }
+
+    .side-tabs li a{
+        display: block;
+        text-decoration: none;
+        padding: 10px 15px;
+        color: black;
+        background-color: #9999;
+        text-align: right;
+    }
+
+
+    .side-tabs li a.selected{
+        background-color: #fff;
+        font-weight: bold;
+    }
+
+    .menu{
+        float: left;
+        width: 83.7%;
+        background-color: white;
+        padding: 0 30px 0 25px;
+    }
+
+    .menu-items{
+        width: 100%;
+    }
+
+    .menu-items h2{
+        margin-left: 15px;
+    }
+
+    .item-info{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    .item-info div img{
+    height: 249.3px;
+}
+
+    .item-info div a{
+        text-decoration: none;
+        color: black;
+    }
+
+
+    .item-description h4{
+        margin-top: 10px;
+        margin-bottom: 2px;
+    }
+
+    .item-description p{
+        float: left;
+        margin-top: 0;
+    }
+
+    .item-description p.price{
+        float: right;
+    }
+}

@@ -1,0 +1,90 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/addItem.css" %}{% endblock %}
+
+{% block bootstrap-css %}
+{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30">
+                        <p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li>
+                    <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url "users:login_page" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+{% block add-item %}
+    <div class="add-item-form">
+        <form id="add-item" action="{% url "eatHokies:edit" items_list.id %}" method="POST">
+            {% csrf_token %}
+            <h1>Edit item</h1>
+            <div class="item-name">
+                <label><b>Item Name</b></label>
+                <input required type="text" placeholder="Item name" name="name" value="{{ items_list.name }}">
+            </div>
+
+            <div class="item-description">
+                <label><b>Item Description</b></label>
+                <textarea required class="text-field" name="description">{{ items_list.description }}</textarea>
+            </div>
+
+{#            <div class="select-dining">#}
+{#                <label><b>Select a dining</b></label>#}
+{#                <select name="dining" required>#}
+{#                    <option selected>Select a dining</option>#}
+{#                    <option value="1">1. Burger' 37</option>#}
+{#                    <option value="2">2. D2</option>#}
+{#                    <option value="3">3. Turner Place</option>#}
+{#                    <option value="4">4. DXpress</option>#}
+{#                    <option value="5">5. Deet's Place</option>#}
+{#                    <option value="6">6. Hokie Grill</option>#}
+{#                    <option value="7">7. Owens</option>#}
+{#                    <option value="8">8. Jamba</option>#}
+{#                    <option value="9">9. Origami</option>#}
+{#                    <option value="10">10. West End Market</option>#}
+{#                </select>#}
+{#            </div>#}
+
+            <div class="item-price">
+                <label><b>Price</b></label>
+                <input type="text" name="price" placeholder="Item price" value="{{ items_list.price }}" required>
+            </div>
+
+            <div class="time">
+                <label><b>Time</b></label>
+                <input type="text" name="time" placeholder="Estimated time to prepare" value="{{ items_list.time }}" required>
+            </div>
+
+{#                <div class="input-for-add">#}
+{#                    <label><b>Upload Image</b></label>#}
+{#                    <input id="upload-images" type="file" name="image" title="{{ items_list.url }}" accept="image/*" multiple>#}
+{#                <div id="thumbnailPreview"></div>#}
+{#                </div>#}
+
+            <input type="submit" class="submit-button" value="Edit Item">
+
+    </form>
+    </div>
+
+{% endblock %}
+
+{% block bootstrap-script %}
+{% endblock %}

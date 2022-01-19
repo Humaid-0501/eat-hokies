@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+    {% block bootstrap-css %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/global.css" %}">
+    <link rel="stylesheet" type="text/css" href={% block page-css %}{% endblock %}>
+    <script src="{% static "js/jquery-3.6.0.min.js" %}"></script>
+    <script src="{% static "js/script.js" %}"></script>
+    <title>Eat Hokies | {% block page-title %}{% endblock %}</title>
+</head>
+<body>
+    <div id="header">
+        <div id="title-logo">
+            <img class="vt-logo" src="{% static "img/VT_logo.png" %}" alt="Eat Hokies Logo" height="100"> <!--Source of image: https://brand.vt.edu/ -->
+            <a href="{% url "eatHokies:dining_home" %}"><h1>Eat Hokies</h1></a>
+        </div>
+        {% block page-header %}{% endblock %}
+    </div>
+
+
+    <div class="content">
+        {% load humanize %}
+        {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+        {% endif %}
+        {% block login-page %}{% endblock %}
+        {% block home-page %}
+
+        {% endblock %}
+        {% block add-item %}{% endblock %}
+        {% block details-block %}{% endblock %}
+        {% block dining-name %}{% endblock %}
+
+        {% block side-tabs %}{% endblock %}
+
+        {% block menu %}{% endblock %}
+
+    </div>
+
+    <div id="footer">
+        <h2>JOIN OUR EAT WELL, BE WELL CULTURE.</h2>
+        <p>Stay up-to-date with our seasonal specials and promotions</p>
+        <form id="footer-subscribe">
+            <input type="email" name="email" placeholder="Enter your email address">
+            <input type="submit" name="submit" value="SIGN ME UP!">
+        </form>
+        <hr>
+
+        <div id="contact">
+            <div class="social-links"> <!-- Source for icons - https://www.flaticon.com -->
+                <a href="#"><img src="{% static "icons/facebook.png" %}" alt="facebook icon" height="40"></a>
+                <a href="#"><img src="{% static "icons/instagram.png" %}" alt="instagram icon" height="40"></a>
+                <a href="#"><img src="{% static "icons/pinterest.png" %}" alt="pinterest icon" height="40"></a>
+                <a href="#"><img src="{% static "icons/twitter.png" %}" alt="twitter icon" height="40"></a>
+            </div>
+            <h3 style="margin-bottom: 10px">GET IN TOUCH</h3>
+            <a href="#">Contact</a>
+            <p style="margin: 10px 0 5px 0;">Eat Hokies by <em>Virginia Tech.</em></p>
+            <p style="margin: 5px 0 10px 0;">Copyright © 2021. All rights reserved.</p>
+        </div>
+
+    </div>
+
+    {% block bootstrap-script %}{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/addItem.css" %}{% endblock %}
+
+{% block bootstrap-css %}
+{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                    <input type="hidden" value="{{ id }}">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30">
+                        <p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li>
+                    <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url "users:login_page" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+{% block add-item %}
+    <div class="add-item-form">
+        <form id="add-item" action="{% url "eatHokies:delete" %}" method="POST">
+            {% csrf_token %}
+            <h1>Delete item</h1>
+            <div class="item-name">
+                <label><b>Are you sure you want to delete this item?</b></label>
+            </div>
+
+            <div class="item-price">
+                <input type="text" name="confirmation" placeholder="yes or no" required>
+                <input type="hidden" id="id" name="id" value="{{ id }}">
+            </div>
+            <input type="submit" class="submit-button" value="Delete Item">
+
+
+    </form>
+    </div>
+
+{% endblock %}
+
+{% block bootstrap-script %}
+{% endblock %}

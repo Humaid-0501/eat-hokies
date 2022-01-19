@@ -1,0 +1,91 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/addItem.css" %}{% endblock %}
+
+{% block bootstrap-css %}
+{#    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">#}
+{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30">
+                        <p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li>
+                    <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url "users:login" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+{% block add-item %}
+    <div class="add-item-form">
+        <form id="add-item" action="{% url "users:edit_detail" user_list.username %}" method="POST">
+            {% csrf_token %}
+            <h1>Edit Profile</h1>
+            <div class="item-name">
+                <label><b>First Name</b></label>
+                <input required type="text" placeholder="First name" name="firstname" value="{{ user_list.first_name }}">
+            </div>
+
+            <div class="item-description">
+                <label><b>Last Name</b></label>
+                <input required type="text" placeholder="Last name" name="lastname" value="{{ user_list.last_name }}">
+            </div>
+
+            <div class="edit-email">
+                <label><b>Email</b> </label>
+                <input required type="email" placeholder="email" name="email" value="{{ user_list.email }}">
+            </div>
+
+            {% if request.session.role == 'admin' %}
+                <div class="edit-role">
+                    <label><b> Role </b> </label>
+                    <input required type="text" placeholder="role" name="role" value="{{ user_list.details.role }}">
+                </div>
+            {% endif %}
+
+            <div class="item-category">
+                <label><b>Gender</b></label>
+                <select name="gender" required>
+{#                    <option selected>Select category</option>#}
+                    <option value="Not Shared">Not Shared</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="edit-password">
+                <label><b>Password (Optional)</b></label>
+                <input type="password" placeholder="password" name="password" value="">
+            </div>
+
+            <div class="input-for-add">
+                <label><b>Profile Picture</b></label>
+                <input id="upload-images" type="file" name="profile-picture" accept="image/*">
+                <div id="thumbnailPreview"></div>
+            </div>
+
+            <input type="submit" class="submit-button" value="Save">
+
+    </form>
+    </div>
+
+{% endblock %}
+
+{% block bootstrap-script %}
+{% endblock %}

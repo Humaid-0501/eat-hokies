@@ -1,0 +1,234 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-family: Acherus Grotesque, Montserrat, Helvetica, Arial, SansSerif;
+}
+
+#title-logo{
+    position: relative;
+    padding: 30px 68px 0 68px;
+    text-align: center;
+}
+
+div#title-logo h1{
+    text-align: center;
+}
+
+#primary-nav{
+    height: 50px
+}
+
+.nav-buttons{
+    display: block;
+    width: auto;
+}
+
+#primary-nav ul{
+    margin: 0;
+    list-style-type: none;
+}
+
+#primary-nav ul li{
+    float: left;
+}
+
+#primary-nav ul li a{
+    display: block;
+    text-decoration: none;
+    padding: 10px 25px;
+    color: black;
+}
+
+#primary-nav ul li a:hover{
+    background-color: grey;
+}
+
+#description{
+    display: none;
+}
+
+#register-user {
+    text-align: center;
+    border: 1px solid;
+    border-radius: 25px;
+    padding-bottom: 20px;
+    background-color: #9999;
+}
+
+#register-user label{
+    display: block;
+    left: 110px;
+    position: relative;
+    text-align: left;
+    padding: 10px 0 5px;
+}
+
+.email-error{
+    color: darkred;
+    margin: 5px 0 0 0;
+}
+
+.pass-error{
+    color: darkred;
+    margin: 5px 0 0 0;
+}
+
+#register-user input[type=text], input[type=email], input[type=password]{
+        width: 45%;
+        padding: 12px 10px;
+        display: inline-block;
+        /*border: 1px solid #ccc;*/
+        border:none;
+        border-radius: 10px;
+        box-sizing: border-box;
+}
+
+#register-user input[type=submit]{
+        margin: 35px 0 0 0;
+        padding: 14px 20px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+}
+
+#footer,hr{
+        clear: left;
+    text-align: center;
+        margin: 0;
+}
+
+#footer #footer-subscribe input[type=email]{
+    padding: 5px 0 5px 5px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+#footer #footer-subscribe input[type=submit]{
+    padding: 5px;
+    border-style: groove;
+}
+
+.social-links img{
+    padding: 30px 10px 10px 10px;
+}
+
+@media all and (min-width: 1290px){
+
+    #header{
+        overflow: hidden;
+    }
+
+    #title-logo{
+        float: left;
+        width: 35%; /* 600px*/
+        padding: 0;
+    }
+
+    div#title-logo img{
+        float: left;
+        margin: 20px 50px;
+    }
+
+    div#title-logo h1{
+        margin-top: 50px;
+        text-align: left;
+    }
+
+    /*Styling the primary navigation container*/
+    #primary-nav{
+        display: inline-block;
+        width: 39%; /* 692px*/
+    }
+
+    #primary-nav ul{
+        float: right;
+        position: relative;
+        display: inline-flex;
+    }
+
+    #primary-nav ul li{
+        float: left;
+    }
+
+    #primary-nav ul li a{
+        display: block;
+        text-decoration: none;
+        padding: 10px 15px;
+        margin-top: 40px;
+    }
+
+    #primary-nav ul li a:hover{
+        background-color: grey;
+    }
+
+    #content{
+        padding-bottom: 100px;
+        background-color: #cccccc;
+        overflow: hidden;
+    }
+
+    #description{
+        display: block;
+        float: left;
+        width: 27.9%;
+        margin: 100px 0 0 50px;
+    }
+
+    /*Sign up container styling*/
+    #register-user{
+        float: left;
+        margin: 100px 0 0 2.79%;
+        text-align: center;
+        padding: 30px 5.02% 70px 5.02%;
+        border: solid;
+        border-radius: 25px;
+        /* width: 500px; */
+        width: 28%;
+        background-color: #9999;
+    }
+
+    /*Styling the sign-in password elements   */
+    #register-user input[type=text], input[type=email], input[type=password]{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+    }
+
+    #register-user label{
+        display: inline-block;
+        float: left;
+        left: 0;
+    }
+
+    #content{
+        clear: left;
+    }
+
+    #footer,hr{
+        clear: left;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+    }
+
+    #footer #footer-subscribe input[type=email]{
+        padding: 5px 0 5px 5px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 0;
+        cursor: pointer;
+        margin-bottom: 20px;
+    }
+
+    #footer #footer-subscribe input[type=submit]{
+        padding: 5px;
+        border-style: groove;
+    }
+
+    .social-links img{
+        padding: 30px 30px 0 0;
+    }
+}

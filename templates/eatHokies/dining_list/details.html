@@ -1,0 +1,81 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+
+{% block page-css %}{% static "css/details.css" %}{% endblock %}
+
+{% block page-title %}Details{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30">
+                        <p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li>
+                    <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url "users:login_page" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+{% endblock %}
+
+{% block details-block %}
+    <div class="item-image">
+            <div class="image">
+                <img src={% static details.url %} alt="item-pictures"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+            </div>
+
+            <div class="item-description">
+                <h1>{{ details.name }}</h1>
+                <p>{{ details.description }}</p>
+                <div class="item-quantity">
+                    <a class="minus-button" data-item-id="{{ details.id }}" data-ajax-url="{% url "eatHokies:item_quantity_minus" %}"><img class="minus-icon" src="{% static "icons/minus.png" %}" alt="minus icon" height="40"></a> <!-- Source for icons - flaticon.com -->
+                    <p class="quantity">{{ details.quantity }}</p>
+                    <a class="plus-button" data-item-id="{{ details.id }}" data-ajax-url="{% url "eatHokies:item_quantity_plus" %}"><img class="plus-icon" src="{% static "icons/add.png" %}" alt="plus icon" height="40"></a> <!-- Source for icons - flaticon.com -->
+                    <button class="cart-button"><span>Add to cart</span><span class="item-price" style="float: right">$ <span class="amount" data-item-id="{{ details.id }}">{{ details.total_price }}</span></span></button>
+                    {% if request.session.username == 'admin' %}
+                    <a href="{% url "eatHokies:edit_item" details.id %}" class="edit-button"><img src="{% static "icons/edit.png" %}"></a>
+                    {% endif %}
+                    <p class="date-posted">Date posted: {{ details.date_posted }}</p>
+                    <p class="creator">Added by: <a href="{% url "users:profile" details.user.username %}">{{ details.user.username }}</a></p>
+                </div>
+            </div>
+    </div>
+    <div class="comments">
+        <div class="comments-heading">
+            <h2>Comments</h2>
+            <a href="#"><input data-user-name="{{ request.session.username }}" data-item-id="{{ details.id }}" data-ajax-url="{% url "eatHokies:view_comment" details.id %}" class="view-comment" type="submit" value="View Comment"></a>
+        </div>
+        <div class="user-commented">
+                <div class ="comments-recorded">
+                </div>
+        </div>
+        {% if request.session.username %}
+            <form id="item-user-comment" action="{% url "eatHokies:comment" details.id %}" method="post">
+                    {% csrf_token %}
+
+                    <!--New comment that is un-submitted-->
+                    <div class="user-comment">
+                        <textarea required type="text" placeholder="Users Comment" name="comment" id="createUserComment"></textarea>
+                    </div>
+
+                    <div>
+                        <input data-item-id="{{ details.id }}" data-ajax-url2="{% url "eatHokies:edit_comment" %}" data-ajax-url="{% url "eatHokies:comment" details.id  %}" class="submit-button" type="submit" value="Submit">
+                    </div>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

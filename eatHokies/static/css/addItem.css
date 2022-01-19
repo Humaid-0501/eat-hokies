@@ -1,0 +1,49 @@
+.content{
+    background-color: #ccc;
+    justify-content: center;
+}
+
+#add-item h1{
+    text-align: center;
+}
+
+.add-item-form{
+    padding: 30px 0;
+}
+
+.add-item-form div{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: space-evenly;
+}
+
+#add-item{
+    margin: 0 15% 10px;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-radius: 25px;
+    background-color: #9999;
+    margin: 0 0;
+    padding: 0 30px;
+}
+
+#add-item div{
+    margin: 10px 0;
+}
+
+#add-item input[type="submit"]{
+    width: 90px;
+    text-align: center;
+    margin: 0 0 20px;
+}
+
+.submit-button{
+    text-align: center;
+}
+
+@media all and (min-width: 1290px){
+    #add-item{
+        margin: 0 30% 0;
+    }
+}

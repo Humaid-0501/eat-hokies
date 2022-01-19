@@ -1,0 +1,204 @@
+{% extends "eatHokies/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block page-css %}{% static "css/index.css" %}{% endblock %}
+
+{% block page-title %}Home{% endblock %}
+
+{% block page-header %}
+        <div id="primary-nav">
+            <div>
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search" name="search-items"><img class="search-icon" src="{% static "icons/magnifying-glass.png" %}" alt="search icon" height="15"> <!-- Source for icons - https://www.flaticon.com -->
+                    <input class="search-button" type="submit" value="Go">
+                </form>
+            </div>
+            <div class="nav-buttons">
+                <ul>
+                    <li><a class="cart-icon" href="#"><img src="{% static "icons/shopping-cart.png" %}" alt="shopping icon" height="30"><p style="margin: 0;">Cart</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="#"><img src="{% static "icons/information.png" %}" alt="information icon" height="30"><p class="help-icon" style="margin: 0;">Help</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    {% if request.session.username %}
+                    <li><a href="{% url "users:profile" request.session.username %}"><img src="{% static "icons/user.png" %}" alt="user icon" height="30"><p class="profile-icon" style="margin: 0;">{{ request.session.username }}</p></a></li> <!-- Source for icons - https://www.flaticon.com -->
+                    <li><a href="{% url "users:logout" %}">Log Out</a></li>
+                    {% else %}
+                        <li><a href="{% url "users:login_page" %}">Log In</a></li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block home-page %}
+{#    Welcome message and advertisement#}
+    <div class="welcome">
+        <h3>Welcome to Eat Hokies App</h3>
+        {% if request.session.role == 'admin' %}
+            <p>Forget all those preconceived notions of nasty cafeteria food. This home page is for the admin where the admin can add, edit or delete an item. Thank you for joining us!</p>
+        {% elif request.session.role == 'regular' %}
+            <p>Forget all those preconceived notions of nasty cafeteria food. This home page is for regular users where they can view their personalized dashboard. Thank you for joining us!</p>
+        {% else %}
+            <p>Forget all those preconceived notions of nasty cafeteria food. At Virginia Tech, we maintain a perfect balance between good and healthy food.
+                    So join us and stay healthy!</p>
+        {% endif %}
+    </div>
+    <div class="carousel-container">
+{#        <div class="navigation">#}
+{#          <div class="prev nav-btn">&lt;</div>#}
+{#          <div class="next nav-btn">></div>#}
+{#        </div>#}
+        <div class="carousel">
+          <div class="item main">
+            <img src="{% static "img/owens_dining_hall.jpeg"%}" alt="owens image"/> <!--Source of image: https://www.google.com/imghp?hl=en-->
+          </div>
+        </div>
+    </div>
+
+
+{#    Dashboard#}
+    {% if request.session.role == 'regular' %}
+    <div class="dashboard">
+        <div class="choose-dining">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="dashboard-content">
+            <div class="order-history">
+                {% include "actions/action/feed.html" %}
+                <h3>Order History</h3>
+                <div class="order-history-row">
+                    {% for item in order_hostory %}
+                    <div>
+                        <a href="{% url "eatHokies:dining_details" item.id %}">
+                            <img src="{% static item.url %}" alt="Food Image" style="width: 100%;">
+                            <div class="item-description">
+                                <h4>{{ item.name }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="order-history">
+                <h3>Favourites</h3>
+                <div class="order-history-row">
+                    {% for item in favourite %}
+                    <div>
+                        <a href="{% url "eatHokies:dining_details" item.id %}">
+                            <img src="{% static item.url %}" alt="Food Image" style="width: 100%;">
+                            <div class="item-description">
+                                <h4>{{ item.name }}</h4>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if request.session.role == 'admin' %}
+        <div class="dashboard">
+            <div class="dashboard-content">
+            <div class="order-history">
+                {% include "actions/action/feed.html" %}
+            </div>
+            </div>
+        </div>
+    {% endif %}
+
+
+
+
+    <div class="dining-container">
+        <div class="choose-dining">
+            <h1>Choose a dining</h1>
+        </div>
+{#            {% for dining in dinings %}#}
+            <div class="dining-display">
+
+                <div class="row-1">
+                    <a href="{% url "eatHokies:dining_list" 1 %}">
+                        <img src="{% static "img/b37_icon.png" %}" alt="burger 37" height="200" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Burger' 37</b></p>
+                    </a>
+                </div>
+
+
+                <div class="row-1">
+                    <a href="{% url "eatHokies:dining_list" 2 %}">
+                        <img src="{% static "img/d2_icon.png" %}" alt="d2" height="200" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>D2</b></p>
+                    </a>
+                </div>
+
+                <div class="row-1">
+                    <a href="{% url "eatHokies:dining_list" 3 %}">
+                        <img src="{% static "img/turner_icon.png" %}" alt="turner" height="200" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Turner Place</b></p>
+                    </a>
+                </div>
+
+                <div class="row-1">
+                    <a href="{% url "eatHokies:dining_list" 4 %}">
+                        <img src="{% static "img/dxpress_icon.png" %}" alt="dxpress" height="200" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>DX</b></p>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="dining-display">
+                <div class="row-2">
+                    <a href="{% url "eatHokies:dining_list" 5 %}">
+                        <img src="{% static "img/deets_icon.png" %}" alt="deets" height="300" width="320" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Deet's Place</b></p>
+                    </a>
+                </div>
+
+                <div class="row-2">
+                    <a href="{% url "eatHokies:dining_list" 6 %}">
+                        <img src="{% static "img/hokie-grill_icon.png" %}" alt="hokie grill" height="320" width="320" style="margin-bottom: -20px" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Hokie Grill</b></p>
+                    </a>
+                </div>
+
+                <div class="row-2">
+                    <a class="owens" href="{% url "eatHokies:dining_list" 7 %}">
+                        <img class="owens" src="{% static "img/owens_icon-removebg-preview.png" %}" alt="owens" height="270" width="320"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Owens</b></p>
+                    </a>
+                </div>
+
+                <div class="row-2">
+                    <a href="{% url "eatHokies:dining_list" 8 %}">
+                        <img src="{% static "img/jamba_icon.png" %}" alt="jamba" height="250" style="margin-bottom: 66px" width="346" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Jamba</b></p>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="dining-display">
+                <div class="row-3">
+                    <a href="{% url "eatHokies:dining_list" 9 %}">
+                        <img src="{% static "img/origami_icon.png" %}" alt="origami" height="300" width="320" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>Origami</b></p>
+                    </a>
+                </div>
+
+                <div class="row-3">
+                    <a href="{% url "eatHokies:dining_list" 10 %}" class="west-end-market">
+                        <img src="{% static "img/west-end-market_icon.png" %}" alt="west end market" height="230" style="width: 348px; margin-bottom: 86px;" class="dining-option"> <!--Source of image: https://www.google.com/imghp?hl=en-->
+                        <p class="dining-caption"><b>West End Market</b></p>
+                    </a>
+                </div>
+
+            </div>
+{#            {% endfor %}#}
+    </div>
+{% endblock %}
